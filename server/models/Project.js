@@ -1,12 +1,5 @@
 const mongoose = require('mongoose');
 
-// const ProjectSchema = mongoose.Schema({
-//     name: String,
-//     status: String,
-//     description: String
-//     clientId: String
-// });
-
 const ProjectSchema = mongoose.Schema({
     name: {
         type: String
