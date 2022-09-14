@@ -2,7 +2,6 @@ const Project = require('../models/Project');
 const Client = require('../models/Client');
 
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLSchema, GraphQLList, GraphQLNonNull, GraphQLEnumType } = require('graphql');
-const { findByIdAndUpdate } = require('../models/Project');
 
 const ClientType = new GraphQLObjectType({
     name: 'Client',
@@ -95,6 +94,11 @@ const Mutation = new GraphQLObjectType({
             type: ClientType,
             args: { id: { type: new GraphQLNonNull(GraphQLID) } },
             resolve(parent, args) {
+                Project.find({ clientId: args.id }).then((projects) => {
+                    projects.forEach((project) => {
+                        project.remove();
+                    });
+                })
                 return Client.findByIdAndRemove(args.id)
             }
         },

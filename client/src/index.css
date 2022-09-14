@@ -23,6 +23,7 @@ code {
 
 .btn {
   font-size: 15px;
+  outline: none;
 }
 
 .btn-primary,
